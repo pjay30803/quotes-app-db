@@ -1,16 +1,81 @@
-# quotes_db_miner
+# 💬 Quotes (DB Miner)
 
-A new Flutter project.
+A modern Flutter app to explore, favorite, and manage inspirational quotes — powered by SQLite and GetX for seamless performance and local storage.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## ✨ Features
 
-A few resources to get you started if this is your first Flutter project:
+- 📖 View categorized quotes
+- ❤️ Mark/unmark favorites
+- 💾 Persistent local storage using SQLite
+- 🌙 Light/Dark theme toggle
+- ⚡ Fast navigation & reactivity via GetX
+- 🧠 JSON quote loader for first-time setup
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+---
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+🖼 Screenshots
+
+![ScreenShot 1](screenshots/s1.png)
+![ScreenShot 2](screenshots/s2.png)
+![ScreenShot 3](screenshots/s3.png)
+![ScreenShot 4](screenshots/s4.png)
+
+## 🛠️ Built With
+
+- **Flutter** & **Dart**
+- **GetX** – state management & routing
+- **SQLite** – local DB for offline access
+- **Path Provider** – file storage access
+
+---
+
+## 🧩 Project Structure
+
+lib/ ├── controllers/ # JSON data loader ├── helpers/ # Database helper (SQLite) ├── models/ # QuoteModel (data structure) ├── screens/ # UI screens (home, detail, favorite) └── main.dart # Entry point
+
+yaml
+Copy
+Edit
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone & Install
+
+```bash
+git clone https://github.com/your-username/quotes-db-miner.git
+cd quotes-db-miner
+flutter pub get
+2. Run the App
+bash
+Copy
+Edit
+flutter run
+📸 UI Preview
+(Add screenshots here of Home, Detail, and Favorite screens)
+
+📁 JSON Structure (Sample)
+json
+Copy
+Edit
+[
+  {
+    "quote": "Be yourself; everyone else is already taken.",
+    "author": "Oscar Wilde",
+    "category": "Inspiration"
+  }
+]
+🧠 Smart Behavior
+Quotes loaded from JSON only once into SQLite
+
+Favorites are toggled and persisted locally
+
+List auto-refreshes on delete or toggle
+
+Theme updates instantly with one tap
+
+
+
