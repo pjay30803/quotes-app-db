@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -43,20 +45,15 @@ class DbHelper {
     return quoteList.map((e) => QuoteModel.fromJson(e)).toList();
   }
 
-  Future<List<QuoteModel>> fetchQuotesByCategory(String category) async {
-    await initDB();
-    List<Map<String, dynamic>> filteredQuotes = await db!.query(
-      'quotes',
-      where: 'category = ?',
-      whereArgs: [category],
-    );
-
-    return filteredQuotes.map((e) => QuoteModel.fromJson(e)).toList();
-  }
-
   Future<int> deleteQuote(int id) async {
     await initDB();
-    return await db!.delete('quotes', where: 'id = ?', whereArgs: [id]);
+    String query = "DELETE FROM quotes WHERE id-?;";
+
+    List args = [id];
+
+    int res = await db!.rawDelete(query, args);
+
+    return res;
   }
 
   Future<int> toggleFavorite(int id, int newValue) async {
@@ -77,5 +74,14 @@ class DbHelper {
       whereArgs: [1],
     );
     return favorites.map((e) => QuoteModel.fromJson(e)).toList();
+  }
+
+  Future<List<QuoteModel>> searchQuotes({required String category}) async {
+    await initDB();
+    String query = "SELECT * FROM quotes WHERE category LIKE ?";
+    List<Map<String, dynamic>> searchedQuotes = await db!.rawQuery(query, [
+      '%$category%',
+    ]);
+    return searchedQuotes.map((e) => QuoteModel.fromJson(e)).toList();
   }
 }
